@@ -1,7 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Entrega de trabalho
+NOME: Caique Moreira Leite Solda, CURSO: análise e desenvolvimento de sistemas
+declaramos que
+todas as respostas são fruto de nosso próprio trabalho,
+não copiamos respostas de colegas externos à equipe,
+não disponibilizamos nossas respostas para colegas externos à equipe e
+não realizamos quaisquer outras atividades desonestas para nos beneficiar ou prejudicar 
+outros.
  */
 package sudokuGame;
 
@@ -12,7 +17,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author caiqu
+ * @author Caique Moreira Leite Solda
  */
 public class SudokuMain {
 
@@ -44,8 +49,8 @@ public class SudokuMain {
             System.out.print("Digite 1 para inserir na matriz e 2 para limpar alguma posição da matriz: ");
             int opcao = sc.nextInt();
 
-            while (opcao != 1 || opcao != 2) {
-                if (opcao == 1 || opcao == 2) {
+            while (opcao != 1 || opcao != 2) { // aqui estou colocando que se o número o numero for diferente de 1 ou 2 ele repete
+                if (opcao == 1 || opcao == 2) {  //quando for igual a 1 ou 2 ele para o laço e deita a pessoa adicionar o número
                     break;
                 }
                 System.out.print("Digite um número válido: ");
@@ -55,32 +60,31 @@ public class SudokuMain {
             System.out.println("");
             System.out.print("Digite o número da linha: ");
             int linha = sc.nextInt();
-            if (linha > 8 || linha < 0) {
-                System.out.print("Digite um número que tenha no indice: ");
+            while (linha > 8 || linha < 0) { // aqui eu valido se o número digitado tem no indice da matriz 
+                System.out.print("Digite um número que tenha no indice: "); //caso o número não tenha ele repete até o usuário digitar um válido
                 linha = sc.nextInt();
             }
             System.out.print("Digite o número da coluna: ");
             int coluna = sc.nextInt();
-            if (coluna > 8 || coluna < 0) {
-                System.out.print("Digite um número que tenha no indice: ");
+            while (coluna > 8 || coluna < 0) { // aqui eu valido se o número digitado tem no indice da matriz 
+                System.out.print("Digite um número que tenha no indice: ");//caso o número não tenha ele repete até o usuário digitar um válido
                 coluna = sc.nextInt();
             }
 
-            if (opcao == 1) {
+            if (opcao == 1) { //aqui eu verifico a opção do usuário 
                 System.out.print("Digite o número que deseja inserir: ");
                 String numero = sc.next();
-                step(matriz, linha, coluna, numero.charAt(0), false);
+                step(matriz, linha, coluna, numero.charAt(0), false); //caso seja igual 1, ele adiciona 
 
-            } else if (opcao == 2) {
-                step(matriz, linha, coluna, '0', true);
-//                limpar(matriz, linha, coluna);
+            } else if (opcao == 2) { //aqui eu verifico a opção do usuário 
+                step(matriz, linha, coluna, '0', true); //caso seja igual 2, ele limpa no indice que ele deseja
 
             }
             System.out.println("");
             print(matriz);
 
-            if (status(matriz) == true) {
-                System.out.println("");
+            if (status(matriz) == true) { // aqui eu verifico se ainda tem espaço em branco e se não tiver a função retorna true 
+                System.out.println(""); // e o jogo finaliza
                 System.out.println("PARABÉNS VOCÊ COMPLETOU O SUDOKU");
                 break;
             }
@@ -168,11 +172,11 @@ public class SudokuMain {
                 }
             }
 
-            int quadranteLinha = (linha / 3) * 3;                 
+            int quadranteLinha = (linha / 3) * 3;  // utilizei parte da logíca mostrada em aula onde limitava o tamanho da matriz  
             int quadranteColuna = (coluna / 3) * 3;
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {  //Criei os for para percorrer linha e coluna da matriz e os limitei do tamanho que vai ser necessario caminhar que no caso seria 3x3
                 for (int j = 0; j < 3; j++) {
-                    if (matriz[quadranteLinha + i][quadranteColuna + j] == jogada) {
+                    if (matriz[quadranteLinha + i][quadranteColuna + j] == jogada) { //aqui ele verificar se o número digitado tem no quadrante 
                         verificar = 0;
                         status = "Matriz 3x3";
                     }
@@ -201,8 +205,8 @@ public class SudokuMain {
     public static boolean status(char matriz[][]) {
 
         for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[0].length; j++) {
-                if (matriz[i][j] == '_') { //condição que verifica se ainda tem algum campo vazio
+            for (int j = 0; j < matriz[0].length; j++) { //função responsavel por percorrer a matriz e verificar
+                if (matriz[i][j] == '_') { //ainda tem algum campo vazio 
                     return false;
                 }
             }
